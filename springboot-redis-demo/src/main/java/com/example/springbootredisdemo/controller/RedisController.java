@@ -37,6 +37,9 @@ public class RedisController {
         String key = person.getName();
         redisCache.setCacheObject(key, person);
         // 不能直接转换(低版本可以直接转)  估计低版本根据@type自动转换容易有漏洞，高版本不再支持  或使用GenericFastJsonRedisSerializer
+        // 或使用自带GenericJackson2JsonRedisSerializer
+//        System.out.println(redisCache.getCacheObject(key).toString());
+//        System.out.println(redisCache.getCacheObject(key).getClass());
 //        Person personResult = redisCache.getCacheObject(key);     //低版本1.2.78
         JSONObject cacheObject = redisCache.getCacheObject(key);
         Person result = cacheObject.toJavaObject(Person.class);
